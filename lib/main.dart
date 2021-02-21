@@ -26,9 +26,24 @@ class _MyAppState extends State<MyApp> {
     print(_questionIndex);
   }
 
+//Map
   var questions = [
-    'What\' your favorite color?',
-    'What\' your favorite animal?'
+    {
+      'questionText': 'What\' your favorite color?',
+      'answers': ['Black', 'Red', 'Green', 'White']
+    },
+    {
+      'questionText': 'What\' your favorite animal?',
+      'answers': ['Rabit', 'Snake', 'Elephant', 'Lion']
+    },
+    {
+      'questionText': 'What\' your favorite color?',
+      'answers': ['Black', 'Red', 'Green', 'White']
+    },
+    {
+      'questionText': 'Who\' your favorite instructor?',
+      'answers': ['Mahmoud', 'Ahmed', 'Ali', 'Mohamed']
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -39,12 +54,15 @@ class _MyAppState extends State<MyApp> {
         children: [
           //Text(questions[_questionIndex]),
           Question(
-            questionText: questions[_questionIndex],
+            questionText: questions[_questionIndex]['questionText'],
           ),
-
-          Answer(_answerQuestion),
-          Answer(_answerQuestion),
-          Answer(_answerQuestion)
+          ...(questions[_questionIndex]['answers'] as List<String>)
+              .map((answer) {
+            return Answer(_answerQuestion, answer);
+          }).toList()
+          // Answer(_answerQuestion),
+          // Answer(_answerQuestion),
+          // Answer(_answerQuestion)
         ],
       ),
     ));
